@@ -1,0 +1,1176 @@
+dt <- data.frame(#
+t = seq(0, 10, length.out = 10),#
+N = rep(0, 10)#
+)
+dt <- data.frame(#
+t = seq(0, 10, length.out = 10),#
+N = c(rep(0, 3), rep(1, 7))#
+)
+dt
+library(ggplot2)
+p <- ggplot(dt, aes(t, N)) + geom_line()
+p
+?geom_line
+p <- ggplot(dt, aes(t, N)) + geom_step()
+p
+p <- ggplot(dt, aes(t, N)) + geom_path()
+p
+p <- ggplot(dt, aes(t, N)) + geom_segment()
+p
+df <- data.frame(x=seq(0, 10), y=cumsum(rnorm(11)))
+df
+df$xend <- c(df$x[2:nrow(df)], NA)
+df$yend <- df$y
+df
+seq(0, 10)
+seq(0, 10) == 3
+cumsum(seq(0, 10) == 3)
+df <- data.frame(x=seq(0, 10), y=cumsum(seq(0, 10) == 3))#
+df$xend <- c(df$x[2:nrow(df)], NA)#
+df$yend <- df$y
+df
+p <- ggplot(dt, aes(x, y, xend, yend)) + geom_segment()
+p <- ggplot(df, aes(x, y, xend, yend)) + geom_segment()
+df <- data.frame(x=seq(0, 10), y=cumsum(seq(0, 10) == 3))#
+df$xend <- c(df$x[2:nrow(df)], NA)#
+df$yend <- df$y#
+#
+p <- ggplot(df, aes(x, y, xend, yend)) + geom_segment()#
+#
+p
+p <- ggplot(df, aes(x, y, xend=xend, yend=yend)) + geom_segment()
+p
+p <- ggplot(df, aes(x, y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point() +  # Solid points to left#
+    geom_point(aes(x=xend, y=y), shape=1) +  # Open points to right#
+#
+p
+p <- ggplot(df, aes(x, y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point() +  # Solid points to left#
+    geom_point(aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point()# +  # Solid points to left#
+    #geom_point(aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+df <- data.frame(x=seq(0, 10), y=cumsum(seq(0, 10) == 3))
+df$xend <- c(df$x[2:nrow(df)], NA)
+df$yend <- df$y
+df
+df[x == 3, ]
+df["x" == 3, ]
+df$x == 3
+df[df$x == 3, ]
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point(data = df[df$x == 3, ])
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point(data = df[df$x == 3, ])# +  # Solid points to left#
+    geom_point(data = df[df$x == 3, ], aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point(data = df[df$x == 3, ]) +  # Solid points to left#
+    geom_point(data = df[df$x == 3, ], aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point(data = df[df$x == 3, ]) +  # Solid points to left#
+    geom_point(data = df[df$x == 2, ], aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment()
+p
+p <- ggplot(df, aes(x=x, y=y, xend=xend, yend=yend)) + #
+	geom_segment() + #
+	geom_point(data = df[df$x == 3, ]) +  # Solid points to left#
+    geom_point(data = df[df$x == 2, ], aes(x=xend, y=y), shape=1)  # Open points to right#
+#
+p
+library(gganimate)
+install.packages("gganimate")
+library(gganimate)
+an <- p + transition_reveal(x)
+an
+131.118-128.574
+157.576 - 2.544
+192.669-4.667
+192.669-84.667
+155.353-47.625
+104.659-102.116
+247.534-2.543
+104.659-28.736
+247.534-75.923
+131.118-127.8
+104.659-3.318
+68.677-46.451
+68.677+22.226
+247.534-3.318
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-10 + 3*x + 2*x^2 - 3*x^3#
+}#
+#
+y <- vapply(x, f, 0L)#
+#
+plot(x, y)
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-10 + 3*x + 2*x^2 - 3*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y)
+x <- seq(0, 10, 0.1)#
+#
+f <- function(x){#
+	-10 + 3*x + 2*x^2 - 3*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y)
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-1 + 1*x + 1*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y)
+plot(x, y, ylim = c(0, max(y)))
+max(y)
+y
+abline(v = 0)
+abline(h = 0)
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-1 + 10*x + 1*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-1 + 10*x - 1*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.1)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-10 + 10*x - 10*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 15*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 10*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 - 5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 2*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 0.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 10*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 8*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 3*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 10*x - 10*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 15*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 2*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 0.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 5*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 20*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 15*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 2*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 0.8*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 0.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 10, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 8, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 5, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 25*x - 10*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 100*x - 10*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 1*x - 10*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	-1 + 1*x - 1*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 5*x - 1*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 + 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 + 0.5*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 + 0.1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 + 0.14*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 1*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.5*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, 2*y) #ylim = c(0, max(y)))#
+abline(h = 0)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+plot(x, y, type = "l") #ylim = c(0, max(y)))#
+abline(h = 0)#
+points(x, 2*y)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+g <- 2#
+plot(x, y, type = "l", ylim = c(0, g*max(y)))#
+abline(h = 0)#
+points(x, 2*g)
+points(x, g*y)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+g <- 2#
+plot(x, y, type = "l", ylim = c(0, max(g, max(y))))#
+abline(h = 0)#
+points(x, g*y)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+g <- 2#
+plot(x, y, type = "l", ylim = c(0, max(g*max(y), max(y))))#
+abline(h = 0)#
+points(x, g*y)
+x <- seq(0, 1, 0.01)#
+#
+f <- function(x){#
+	0 + 1*x - 0.8*x^2 #+ 1*x^3#
+}#
+#
+y <- vapply(x, f, 0)#
+#
+g <- 0.5#
+plot(x, y, type = "l", ylim = c(0, max(g*max(y), max(y))))#
+abline(h = 0)#
+points(x, g*y)
+g <- 0.1#
+plot(x, y, type = "l", ylim = c(0, max(g*max(y), max(y))))#
+abline(h = 0)#
+points(x, g*y)
+g <- 0.01#
+plot(x, y, type = "l", ylim = c(0, max(g*max(y), max(y))))#
+abline(h = 0)#
+points(x, g*y)
+g <- 0.6#
+plot(x, y, type = "l", ylim = c(0, max(g*max(y), max(y))))#
+abline(h = 0)#
+points(x, g*y)
+1/20
+?sample
+t <- seq(0, 1, 0.1)
+t
+t[-c(1, length(t))]
+t <- seq(0, 1, 0.1)#
+#
+g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- order(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(diff(t))#
+	c(seq(min(t), T[[1]], t_by)*g_w[[1]],#
+	seq(T[[1]]+t_by, T[[2]], t_by)*g_w[[2]],#
+	seq(T[[2]]+t_by, max(t), t_by)*g_w[[3]])#
+}
+g(t)
+diff(t)
+unique(diff(t))
+unique(round(diff(t), 1))
+t <- seq(0, 1, 0.1)#
+#
+g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- order(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+	c(seq(min(t), T[[1]], t_by)*g_w[[1]],#
+	seq(T[[1]]+t_by, T[[2]], t_by)*g_w[[2]],#
+	seq(T[[2]]+t_by, max(t), t_by)*g_w[[3]])#
+}#
+#
+g(t)
+unique(round(diff(t), 1))
+n <- 2
+g_w <- sample(seq(0, 50, 0.1), n + 1)
+T <- order(sample(t[-c(1, length(t))], n))
+t_by <- unique(round(diff(t), 1))
+seq(min(t), T[[1]], t_by)*g_w[[1]]
+g_w[[1]]
+seq(min(t), T[[1]], t_by)
+T[[1]]
+T <- order(sample(t[-c(1, length(t))], n))
+T
+T <- sort(sample(t[-c(1, length(t))], n))
+T
+seq(min(t), T[[1]], t_by)
+t <- seq(0, 1, 0.1)#
+#
+g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+}#
+#
+g(t)
+plot(t, g(t))
+g_t <- g(t)
+plot(t, g_t, ylim = c(0, max(g_t)))
+plot(t, cumsum(g_t))
+plot(t, cumsum(g_t), type = "l")
+t <- seq(0, 1, 0.1)#
+#
+g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+}#
+#
+g_t <- g(t)#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+plot(t, cumsum(g_t), type = "l")
+g_t
+t
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+plot(t, cumsum(g_t), type = "l")
+cumsum(g_t)[t %in% T]
+points(T, cumsum(g_t)[t %in% T])
+plot(t, g_t, ylim = c(0, max(g_t)))
+g_t
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l")#
+#
+points(T, cumsum(g_t)[t %in% T])
+plot(t, g_t, ylim = c(0, max(g_t)))
+T
+cumsum(g_t)
+points(T, cumsum(g_t)[t %in% T])
+plot(t, g_t, ylim = c(0, max(g_t)))
+plot(t, cumsum(g_t), type = "l")
+points(T, cumsum(g_t)[t %in% T])
+plot(t, g_t, ylim = c(0, max(g_t)))
+t
+T
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 50, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l")#
+#
+points(T, cumsum(g_t)[t %in% T])
+lines(t, t, lty = 2)
+cumsum(g_t)
+g_t
+lines(t, t+g_t[[1]], lty = 2)
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))
+points(T, cumsum(g_t)[t %in% T])
+lines(t, t, lty = 2)
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 5, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))#
+points(T, cumsum(g_t)[t %in% T])#
+#
+lines(t, t, lty = 2)
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 3, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))#
+points(T, cumsum(g_t)[t %in% T])#
+#
+lines(t, t, lty = 2)
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 2, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))#
+points(T, cumsum(g_t)[t %in% T])#
+#
+lines(t, t, lty = 2)
+plot(t, g_t, ylim = c(0, max(g_t)))
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))
+points(T, cumsum(g_t)[t %in% T])
+lines(t, t, lty = 2)
+plot(cumsum(g_t), t, type = "l")
+plot(t, cumsum(g_t), type = "l", ylim = c(0, max(cumsum(g_t))))
+points(T, cumsum(g_t)[t %in% T])
+xlim = c(0, max(cumsum(g_t))))
+plot(t, cumsum(g_t), type = "l", #
+	ylim = c(0, max(cumsum(g_t))),#
+	xlim = c(0, max(cumsum(g_t))))
+lines(cumsum(g_t), t, type = "l")
+lines(t, t, lty = 2)
+t <- seq(0, 10, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 2, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+plot(t, cumsum(g_t), type = "l", #
+	ylim = c(0, max(cumsum(g_t))),#
+	xlim = c(0, max(cumsum(g_t))))#
+points(T, cumsum(g_t)[t %in% T])#
+#
+lines(t, t, lty = 2)#
+lines(cumsum(g_t), t, type = "l")
+cum_sum <- cumsum(g_t) * t_by#
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)),#
+	xlim = c(0, max(cum_sum)))#
+points(T, max(cum_sum)),[t %in% T])
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)),#
+	xlim = c(0, max(cum_sum)))
+points(T, max(cum_sum)[t %in% T])
+points(T, cum_sum[t %in% T])
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 2, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+cum_sum <- cumsum(g_t) * t_by#
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)),#
+	xlim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])#
+#
+lines(t, t, lty = 2)#
+lines(cumsum(g_t), t, type = "l")
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0, 2, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+cum_sum <- cumsum(g_t) * t_by#
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)),#
+	xlim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])#
+#
+lines(t, t, lty = 2)
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])
+plot(t, g_t, ylim = c(0, max(g_t)))
+t <- seq(0, 1, 0.1)#
+#
+#g <- function(t){#
+	n <- 2#
+	g_w <- sample(seq(0.1, 2, 0.1), n + 1)#
+	T <- sort(sample(t[-c(1, length(t))], n))#
+	t_by <- unique(round(diff(t), 1))#
+g_t <- 	c(#
+	rep(g_w[[1]], length(seq(min(t), T[[1]], t_by))),#
+	rep(g_w[[2]], length(seq(T[[1]]+t_by, T[[2]], t_by))),#
+	rep(g_w[[3]], length(seq(T[[2]]+t_by, max(t), t_by)))#
+	)#
+#
+#g_t <- g(t)#
+#
+plot(t, g_t, ylim = c(0, max(g_t)))#
+#
+cum_sum <- cumsum(g_t) * t_by#
+#
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])#
+#
+lines(t, t, lty = 2)
+plot(t, g_t, ylim = c(0, max(g_t)))
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])
+lines(t, t, lty = 2)
+plot(cum_sum, t, col = "blue")
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)))#
+points(T, cum_sum[t %in% T])#
+#
+lines(t, t, lty = 2)#
+#
+lines(cum_sum, t, col = "blue")
+plot(t, cum_sum, type = "l", #
+	ylim = c(0, max(cum_sum)),#
+	xlim = c(0, max(c(t, cum_sum))))#
+points(T, cum_sum[t %in% T])#
+#
+lines(t, t, lty = 2)#
+#
+lines(cum_sum, t, col = "blue")
+410*4*3
+2*275*3
+4*475*3
+5700+1650+4920
+3/0.5
+2+1/16
+0.5/3
+2+1/6
+3+2/3+1/6
+3 / 3 + 0.5 / (1/3)
+1 + 3/2
+0.8*2
+0.8*3
+8/2.4
+10/3
+2968177.26*0.0279
+1011078.37 / 2968177.26
+2968177.26*0.0286
+miscFunctions::generateFrame
+gitcreds::gitcreds_set()
+devtools::create_package("~/Documents/research/hypotheticalTreatmentAccelerations")
+library(devtools)
+create_package("~/Documents/research/hypotheticalTreatmentAccelerations")

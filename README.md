@@ -1,1 +1,1 @@
-# hypotheticalTreatmentAccelerations
+# Hypothetical Treatment Accelerations
