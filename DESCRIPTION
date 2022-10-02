@@ -4,9 +4,11 @@ Version: 0.0.0.9000
 Authors@R: 
     person("Haris", "Fawad", , "haris.fawad@medisin.uio.no", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-1885-5846"))
-Description: An implementation of the hypothetical treatment accelerations described in Fawad et al 202x.
+Description: An implementation of the hypothetical treatment accelerations described in https://arxiv.org/abs/2207.07893.
     This package includes a simulated data set, on which a user can specify a treatment acceleration and plot the resulting estimate of the survival function.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.0
+Suggests: 
+    miscFunctions
