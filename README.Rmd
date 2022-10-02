@@ -1,14 +1,24 @@
+---
+output: github_document
+---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
 
 # hypotheticalTreatmentAccelerations
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This is an implementation of the time-change interventions described in
-[Hypothetical Treatment
-Accelerations](https://arxiv.org/abs/2207.07893).
+This is an implementation of the time-change interventions described in [Hypothetical Treatment Accelerations](https://arxiv.org/abs/2207.07893).
 
 ## Installation
 
@@ -21,10 +31,9 @@ devtools::install_github("harisf/hypotheticalTreatmentAccelerations")
 
 ## Example
 
-Using simulated data, we demonstrate a simple time-change intervention
-on a baseline variable.
+Using simulated data, we demonstrate a simple time-change intervention on a baseline variable.
 
-``` r
+```{r example}
 library(hypotheticalTreatmentAccelerations)
 
 generateData(100)
@@ -51,7 +60,7 @@ aaHyp <- timereg::aalen(survival::Surv(from, to, to.state == "dead") ~ 1,
                         data = frame, weights = frame$W)
 ```
 
-``` r
+```{r survival, echo = T}
 # Plot
 t <- aaHyp$cum[, 1]
 sObs <- exp(-aaObs$cum[, 2])
@@ -61,5 +70,3 @@ plot(t, sObs, type = "s", ylim = c(0, 1), main = "Survival", ylab = "Prob.")
 lines(t, sHyp, type = "s", col = "blue")
 legend("bottomright", c("Hypothetical", "Observed"), lty = 1, col = c("blue", "black"))
 ```
-
-<img src="man/figures/README-survival-1.png" width="100%" />
